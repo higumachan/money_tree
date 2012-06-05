@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript">
+	var canvas;
+	var per = 0.1;
+	window.onload = function(){
+		var begin = 100;
+		var edge = "rgb(200, 200, 200)";
+		var center = "rgb(126, 126, 126)";
+		
+
+		canvas = document.getElementById('canv');
+		var wid = 20;
+		var hite = canvas.height;
+		var ctx = canvas.getContext("2d");
+		var grad  = ctx.createLinearGradient(0,0, wid,0);
+
+		grad.addColorStop(0, edge);    // 赤
+		grad.addColorStop(0.5,center); // 緑
+		grad.addColorStop(1, edge);  // 紫
+		ctx.fillStyle = grad;
+		ctx.fillRect(0, (1 - per) * hite, wid, hite)
+		var i = 1;
+		while (i * 5 < per * hite){
+			ctx.moveTo(0, hite - i * 5);
+			ctx.lineTo(wid, hite - i * 5);
+			i++;
+		}
+		ctx.stroke();
+	}
+
+	</script>
+</head>
+<body>
+	<canvas id="canv" width="20" height="300"></canvas>
+	<img src="tree.jpg" alt="" />
+</body>
+</html>
